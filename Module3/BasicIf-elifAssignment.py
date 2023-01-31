@@ -22,6 +22,7 @@ while not i:
         i = True
     else:
         FreeTrial = input("Invalid input please type yes or no:")
+        # Through testing, I found I needed to reformat the variable inside the loop because it wouldnt get formated by the original code
         FreeTrial = FreeTrial.lower()
         FreeTrial = FreeTrial.strip()
 # Make an array to hold the levels of subscription you can upgrade to
@@ -54,6 +55,7 @@ if StartFreeTrial == True:
             i = True
         else:
             UpgradedPackage = input("Invalid Input Please Retype:")
+            # Same as line 26 and 27 I needed to reformat them in the loop because the above code would not be run again
             UpgradedPackage = UpgradedPackage.strip()
             UpgradedPackage = UpgradedPackage.capitalize()
 else:
