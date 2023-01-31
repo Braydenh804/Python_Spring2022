@@ -1,11 +1,3 @@
-""" In the shell or in a text editor, write a program that asks for the user to sign up for Programmer's Toolkit
-Monthly Subscription Box. They must select level of membership they want. Each month is something different,
-t-shirts, stickers, figurines, even programming books! The levels are the following: Platinum Gold Silver Bronze Free
-Trial Platinum is $60, each level below is 10 dollars cheaper, and the free trial is free. Write a program that uses
-a selection statement, getting user's input for a level and printing the cost for that level. Submit your .py file.
-As an example, after it describes the Subscription box levels, it then says "which level would you like to try?" if I
-enter "silver" or something equating to level silver - it should say something like "Silver is $40 a month. Thanks
-for selecting that" """
 # Ask the customer if there interested in the free trial of the product
 print("Hello would you like to sign up for Programmer's Toolkit To get started we have a Free Trial for 7 days if "
       "your interested")
