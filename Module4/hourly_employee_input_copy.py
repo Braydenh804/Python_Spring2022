@@ -26,9 +26,18 @@ def get_employee_input():
                 raise ValueError('Bad Input')
         except:
             print("Please input a valid hourly pay")
-# Print the info in a string
-    print("{}, Weekly hours:{}, Hourly wage:${}".format( first_name, hours_worked_as_int, hourly_pay_as_int))
+    # Call weekly_pay function with the parameters from above
+    weekly_pay(hours_worked_as_int, hourly_pay_as_int)
+
+
+def weekly_pay(hours, pay):
+    # Docstring -- Calculates users weekly pay and returns the info, so it can be printed in main
+    total_pay = hours * pay
+    pay_statement = "Your weekly paycheck will be $" + str(total_pay)
+    return pay_statement
+
 
 # Driver code
 if __name__ == "__main__":
     get_employee_input()
+    print(pay_statement)
