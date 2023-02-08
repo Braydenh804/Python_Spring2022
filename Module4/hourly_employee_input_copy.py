@@ -1,6 +1,7 @@
 def get_employee_input():
-    # Docstring -- Prompts the user for name, amount of hours worked and hourly pay and prints the info in the console
-
+    '''
+    :return: This returns a string displaying the users weekly pay which is calculated in a function called in this function
+    '''
     first_name = input("Enter your first name : ")  # Get users first name
     # Get amount of hours worked loop until valid answer
     i = False
@@ -31,7 +32,11 @@ def get_employee_input():
     return pay_statement
 
 def weekly_pay(hours, pay):
-    # Docstring -- Calculates users weekly pay and returns the info, so it can be printed in main
+   '''
+   :param hours: This is the users input of weekly hours worked
+   :param pay: This is the users input of hourly wage
+   :return: This returns a string that displays the users weekly pay
+   '''
     total_pay = hours * pay
     return "Your weekly paycheck will be $" + str(total_pay)
 
