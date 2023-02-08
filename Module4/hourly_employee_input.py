@@ -27,7 +27,7 @@ def get_employee_input():
         except:
             print("Please input a valid hourly pay")
 # Print the info in a string
-    print("{}, Weekly hours: {} Hourly wage: {}".format( first_name, hours_worked_as_int, hourly_pay_as_int))
+    print("{}, Weekly hours:{}, Hourly wage:${}".format( first_name, hours_worked_as_int, hourly_pay_as_int))
 
 # Driver code
 if __name__ == "__main__":
