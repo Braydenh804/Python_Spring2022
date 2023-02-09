@@ -37,8 +37,8 @@ def weekly_pay(hours, pay):
    :param pay: This is the users input of hourly wage
    :return: This returns a string that displays the users weekly pay
    '''
-    total_pay = hours * pay
-    return "Your weekly paycheck will be $" + str(total_pay)
+   total_pay = hours * pay
+   return "Your weekly paycheck will be $" + str(total_pay)
 
 
 # Driver code
