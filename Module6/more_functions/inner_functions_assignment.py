@@ -1,6 +1,5 @@
 def measurements(a_list):
     '''
-
     :param a_list: Hold a list of either one or two values that make up the lengths on either a square or rectangle
     :return: Returns a string of the area and perimeter of the square or rectangle
     '''
