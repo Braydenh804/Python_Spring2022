@@ -34,14 +34,23 @@ def average_scores(dictionary):
     '''
     score_list = []  # Defines a list to store the score into, so they can be summed
     i = 0  # A value used to search the dictionary and store the values in the above list
-    while i < len(dictionary):  # Loop until all values are stored
-        key_list = list(dictionary.keys())
-        key = key_list[i]
-        score = dictionary.get(key)
-        score_list.append(score)
-        i = i + 1
-    average_score = sum(score_list) / len(score_list)  # Calculate the average of the values stored in the score_list
-    print("Your Average Score is: " + str(average_score))  # Print to console what the average score is
+
+    try:
+        if len(dictionary) == 0:
+            raise ValueError
+        else:
+            while i < len(dictionary):  # Loop until all values are stored
+                key_list = list(dictionary.keys())
+                key = key_list[i]
+                score = dictionary.get(key)
+                score_list.append(score)
+                i = i + 1
+            average_score = sum(score_list) / len(score_list)  # Calculate the average of the values stored in the score_list
+            print("Your Average Score is: " + str(average_score))  # Print to console what the average score is
+            return average_score
+    except ValueError:
+        print("No Scores were entered")
+        return None
 
 
 if __name__ == '__main__':
