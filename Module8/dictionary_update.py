@@ -24,19 +24,17 @@ def get_test_scores():
                 raise ValueError('Bad Input')  # If value doesn't fit the criterion raise error to restart code
         except ValueError:
             print("Please input a valid number")  # Before code restarts inform user the input was invalid
-    average_scores(num, scores_dict)
+    average_scores(scores_dict)
 
 
-def average_scores(num, dictionary):
+def average_scores(dictionary):
     '''
-    :param num: This value is passed as when you subtract 2 you will have the number of scores that were entered into
-    the dictionary which is used to compile the numbers into a list, so I could get the sum.
-    :param dictionary: This value is the dictionary created in the last function which hold the values that we need to
-    average.
+    :param dictionary: This value is the dictionary created in the last function which holds the values that we need to
+    find the average of.
     '''
     score_list = []  # Defines a list to store the score into, so they can be summed
     i = 0  # A value used to search the dictionary and store the values in the above list
-    while i < num-2:  # Loop until all values are stored
+    while i < len(dictionary):  # Loop until all values are stored
         key_list = list(dictionary.keys())
         key = key_list[i]
         score = dictionary.get(key)
