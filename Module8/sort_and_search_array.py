@@ -6,6 +6,8 @@ def sort_array(arr):
     arr.sort()
     print(arr)
     return arr
+# I use a return statement as I needed to convert the list that got sorted into an array in the main because i wanted
+# to call the search function from the main and not inside the sort function
 def search_array(arr, obj):
     """
     Searches the input array for the given object and returns its index.
