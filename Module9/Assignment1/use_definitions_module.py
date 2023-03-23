@@ -1,4 +1,4 @@
-import my_definitions as defs
+from Module9.Assignment1 import my_definitions as defs
 
 # Call the greeting function
 defs.greeting()
