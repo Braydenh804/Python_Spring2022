@@ -76,5 +76,5 @@ def main():
     print(student1)
     print(student2)
 
-if __name__ == '__main__':
+
     main()
