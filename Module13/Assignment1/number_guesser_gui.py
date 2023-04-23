@@ -81,4 +81,4 @@ class NumberGuessingGame:
 
 
 
-game = NumberGuessingGame(50)
+game = NumberGuessingGame(20)
