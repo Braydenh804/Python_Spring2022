@@ -51,13 +51,13 @@ class Screen(Frame):
         self.master = master
         self.name = name
         # Initalise with master
-        self.master.addScreen(self)
+        self.master.add_screen(self)
 
     def show(self):
         """
         Method will show screen
         """
-        self.master.showScreen(self.name)
+        self.master.show_screen(self.name)
 
 
 class ScreenController(Frame):
@@ -121,7 +121,7 @@ def create_window():
     remove_classes_page_button = Button(nav_bar, text='Remove Classes', bg="#0c2b59", fg='#FFFFFF', font=("Arial", 16),
                                         command=lambda: remove_classes.show())
     tuition_total_page_button = Button(nav_bar, text='Check Tuition Total', bg="#0c2b59", fg='#FFFFFF',
-                                       font=("Arial", 16), command=lambda: tuition_total.show())
+                                       font=("Arial", 16), command=lambda: [tuition_total.show(), calculate_tuition()])
     sign_out_button = Button(nav_bar, text='Log Out', bg="#0c2b59", fg='#FFFFFF', font=("Arial", 16), command=quit)
     image = Image.open('settings-icon.png').convert('RGBA')
     image = image.resize((30, 30), Image.ANTIALIAS)
@@ -1076,6 +1076,7 @@ def create_window():
             s5_credits_display_label.config(text='               ' + str(TotalCreditS5) + '/16')
             s6_credits_display_label.config(text='               ' + str(TotalCreditS6) + '/16')
             search_entry_add.delete(0, END)
+
         else:
             if int(var.get()) == 1:
                 current_class_list_s1.pop()
@@ -1160,6 +1161,195 @@ def create_window():
     c6 = Radiobutton(add_new_classes, text='S6', variable=var, width=5, value=6, command=sel)
     c6.grid(row=4, column=5, sticky='e')
 
+    # Remove Classes Functions
+
+    def remove_class():
+        global current_class_list_s1
+        global current_class_list_s2
+        global current_class_list_s3
+        global current_class_list_s4
+        global current_class_list_s5
+        global current_class_list_s6
+        global TotalClassesS1
+        global TotalClassesS2
+        global TotalClassesS3
+        global TotalClassesS4
+        global TotalClassesS5
+        global TotalClassesS6
+        global TotalCreditS1
+        global TotalCreditS2
+        global TotalCreditS3
+        global TotalCreditS4
+        global TotalCreditS5
+        global TotalCreditS6
+        # Remove class if in Semester 1
+        for x in range(len(current_class_list_s1)):
+            try:
+                if str(current_class_list_s1[x]) == str(r_class_entry.get().upper().replace(" ", "")):
+                    key = (add_class[current_class_list_s1[x]].prefix+str(add_class[current_class_list_s1[x]].class_num))
+                    print(str(current_class_list_s1[x]) + ' Has Been Removed From Semester 1')
+                    TotalClassesS1 -= 1
+                    TotalCreditS1 -= int(add_class[key].credits)
+                    current_class_list_s1.remove(key)
+                    s1_c1_display_label.config(text='              Empty')
+                    s1_c2_display_label.config(text='              Empty')
+                    s1_c3_display_label.config(text='              Empty')
+                    s1_c4_display_label.config(text='              Empty')
+                    s1_c5_display_label.config(text='              Empty')
+                    for x in range(len(current_class_list_s1)):
+                        key = (add_class[current_class_list_s1[x]].prefix + str(add_class[current_class_list_s1[x]].class_num))
+                        if x == 0:
+                            s1_c1_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 1:
+                            s1_c2_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 2:
+                            s1_c3_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 3:
+                            s1_c4_display_label.config(text='              ' + add_class[key].class_name)
+                    s1_credits_display_label.config(text='               ' + str(TotalCreditS1) + '/16')
+                    r_class_entry.delete(0, END)
+            except IndexError:
+                pass
+        # Remove class if in Semester 2
+        for x in range(len(current_class_list_s2)):
+            try:
+                if str(current_class_list_s2[x]) == str(r_class_entry.get().upper().replace(" ", "")):
+                    key = (add_class[current_class_list_s2[x]].prefix+str(add_class[current_class_list_s2[x]].class_num))
+                    print(str(current_class_list_s2[x]) + ' Has Been Removed From Semester 2')
+                    TotalClassesS2 -= 1
+                    TotalCreditS2 -= int(add_class[key].credits)
+                    current_class_list_s2.remove(key)
+                    s2_c1_display_label.config(text='              Empty')
+                    s2_c2_display_label.config(text='              Empty')
+                    s2_c3_display_label.config(text='              Empty')
+                    s2_c4_display_label.config(text='              Empty')
+                    s2_c5_display_label.config(text='              Empty')
+                    for x in range(len(current_class_list_s2)):
+                        key = (add_class[current_class_list_s2[x]].prefix + str(add_class[current_class_list_s2[x]].class_num))
+                        if x == 0:
+                            s2_c1_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 1:
+                            s2_c2_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 2:
+                            s2_c3_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 3:
+                            s2_c4_display_label.config(text='              ' + add_class[key].class_name)
+                    s2_credits_display_label.config(text='               ' + str(TotalCreditS2) + '/16')
+            except IndexError:
+                pass
+        # Remove class if in Semester 3
+        for x in range(len(current_class_list_s3)):
+            try:
+                if str(current_class_list_s3[x]) == str(r_class_entry.get().upper().replace(" ", "")):
+                    key = (add_class[current_class_list_s3[x]].prefix+str(add_class[current_class_list_s3[x]].class_num))
+                    print(str(current_class_list_s3[x]) + ' Has Been Removed From Semester 3')
+                    TotalClassesS3 -= 1
+                    TotalCreditS3 -= int(add_class[key].credits)
+                    current_class_list_s3.remove(key)
+                    s3_c1_display_label.config(text='              Empty')
+                    s3_c2_display_label.config(text='              Empty')
+                    s3_c3_display_label.config(text='              Empty')
+                    s3_c4_display_label.config(text='              Empty')
+                    s3_c5_display_label.config(text='              Empty')
+                    for x in range(len(current_class_list_s3)):
+                        key = (add_class[current_class_list_s3[x]].prefix + str(add_class[current_class_list_s3[x]].class_num))
+                        if x == 0:
+                            s3_c1_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 1:
+                            s3_c2_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 2:
+                            s3_c3_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 3:
+                            s3_c4_display_label.config(text='              ' + add_class[key].class_name)
+                    s3_credits_display_label.config(text='               ' + str(TotalCreditS3) + '/16')
+                    r_class_entry.delete(0, END)
+            except IndexError:
+                pass
+        # Remove class if in Semester 4
+        for x in range(len(current_class_list_s4)):
+            try:
+                if str(current_class_list_s4[x]) == str(r_class_entry.get().upper().replace(" ", "")):
+                    key = (add_class[current_class_list_s4[x]].prefix+str(add_class[current_class_list_s4[x]].class_num))
+                    print(str(current_class_list_s4[x]) + ' Has Been Removed From Semester 4')
+                    TotalClassesS4 -= 1
+                    TotalCreditS4 -= int(add_class[key].credits)
+                    current_class_list_s4.remove(key)
+                    s4_c1_display_label.config(text='              Empty')
+                    s4_c2_display_label.config(text='              Empty')
+                    s4_c3_display_label.config(text='              Empty')
+                    s4_c4_display_label.config(text='              Empty')
+                    s4_c5_display_label.config(text='              Empty')
+                    for x in range(len(current_class_list_s4)):
+                        key = (add_class[current_class_list_s4[x]].prefix + str(add_class[current_class_list_s4[x]].class_num))
+                        if x == 0:
+                            s4_c1_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 1:
+                            s4_c2_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 2:
+                            s4_c3_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 3:
+                            s4_c4_display_label.config(text='              ' + add_class[key].class_name)
+                    s4_credits_display_label.config(text='               ' + str(TotalCreditS4) + '/16')
+                    r_class_entry.delete(0, END)
+            except IndexError:
+                pass
+        # Remove class if in Semester 5
+        for x in range(len(current_class_list_s5)):
+            try:
+                if str(current_class_list_s5[x]) == str(r_class_entry.get().upper().replace(" ", "")):
+                    key = (add_class[current_class_list_s5[x]].prefix+str(add_class[current_class_list_s5[x]].class_num))
+                    print(str(current_class_list_s5[x]) + ' Has Been Removed From Semester 5')
+                    TotalClassesS5 -= 1
+                    TotalCreditS5 -= int(add_class[key].credits)
+                    current_class_list_s5.remove(key)
+                    s5_c1_display_label.config(text='              Empty')
+                    s5_c2_display_label.config(text='              Empty')
+                    s5_c3_display_label.config(text='              Empty')
+                    s5_c4_display_label.config(text='              Empty')
+                    s5_c5_display_label.config(text='              Empty')
+                    for x in range(len(current_class_list_s5)):
+                        key = (add_class[current_class_list_s5[x]].prefix + str(add_class[current_class_list_s5[x]].class_num))
+                        if x == 0:
+                            s5_c1_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 1:
+                            s5_c2_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 2:
+                            s5_c3_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 3:
+                            s5_c4_display_label.config(text='              ' + add_class[key].class_name)
+                    s5_credits_display_label.config(text='               ' + str(TotalCreditS5) + '/16')
+                    r_class_entry.delete(0, END)
+            except IndexError:
+                pass
+        # Remove class if in Semester 6
+        for x in range(len(current_class_list_s6)):
+            try:
+                if str(current_class_list_s6[x]) == str(r_class_entry.get().upper().replace(" ", "")):
+                    key = (add_class[current_class_list_s6[x]].prefix+str(add_class[current_class_list_s6[x]].class_num))
+                    print(str(current_class_list_s6[x]) + ' Has Been Removed From Semester 6')
+                    TotalClassesS6 -= 1
+                    TotalCreditS6 -= int(add_class[key].credits)
+                    current_class_list_s6.remove(key)
+                    s6_c1_display_label.config(text='              Empty')
+                    s6_c2_display_label.config(text='              Empty')
+                    s6_c3_display_label.config(text='              Empty')
+                    s6_c4_display_label.config(text='              Empty')
+                    s6_c5_display_label.config(text='              Empty')
+                    for x in range(len(current_class_list_s6)):
+                        key = (add_class[current_class_list_s6[x]].prefix + str(add_class[current_class_list_s6[x]].class_num))
+                        if x == 0:
+                            s6_c1_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 1:
+                            s6_c2_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 2:
+                            s6_c3_display_label.config(text='              ' + add_class[key].class_name)
+                        if x == 3:
+                            s6_c4_display_label.config(text='              ' + add_class[key].class_name)
+                    s6_credits_display_label.config(text='               ' + str(TotalCreditS6) + '/16')
+                    r_class_entry.delete(0, END)
+            except IndexError:
+                pass
+
     remove_classes = Screen(screen_master, 'Remove Classes')
     remove_classes.config(bg='#333333')
     r_class_label = Label(remove_classes, text='Enter The Class You Wish\nTo Remove And Press Enter',
@@ -1167,15 +1357,42 @@ def create_window():
     r_class_label.grid(row=0, column=0)
     r_class_entry = Entry(remove_classes, font=("Arial", 16))
     r_class_entry.grid(row=1, column=0)
-    r_class_button = Button(remove_classes, text='Enter', fg="#FFFFFF", bg='#0c2b59', width=7, height=3)
+    r_class_button = Button(remove_classes, text='Enter', fg="#FFFFFF", bg='#0c2b59', width=7, height=3, command=remove_class)
     r_class_button.grid(row=2, column=0)
+
+
+    # Tuition Page Functions
+    def calculate_tuition():
+        global TotalCreditS1
+        global TotalCreditS2
+        global TotalCreditS3
+        global TotalCreditS4
+        global TotalCreditS5
+        global TotalCreditS6
+        all_credits = TotalCreditS1 + TotalCreditS2 + TotalCreditS3 + TotalCreditS4 + TotalCreditS5 + TotalCreditS6
+        in_state = all_credits * 178
+        out_state = all_credits * 356
+        instate_label.config(text='Total In-State Tuition For All Of Your Semesters Is: $'+ str(in_state))
+        outstate_label.config(text="Total Out of State Tuition For All Of Your Semesters Is: $"+ str(out_state))
+    # Tuition Total Page
     tuition_total = Screen(screen_master, 'Tuition Total')
     tuition_total.config(bg='#333333')
 
+    instate_label = Label(tuition_total, text='Total In-State Tuition For All Of Your Semesters Is: $0', font=("Arial", 20), bg='#333333', fg='#FFFFFF', width=50, pady=20)
+    instate_label.grid(row=0, column=0, sticky='wens')
+    outstate_label = Label(tuition_total, text='Total Out of State Tuition For All Of Your Semesters Is: $0', font=("Arial", 20), bg='#333333', fg='#FFFFFF', width=50, pady=20)
+    outstate_label.grid(row=1, column=0, sticky='wens')
+
+
+
+
+
+
+
+
     admin_page = Screen(screen_master, 'Admin Settings')
     admin_page.config(bg='#333333')
-    does_not_exist = Label(admin_page, text='404 This Page Does Not Exist', font=("Arial", 36), bg='#333333',
-                           fg='#FFFFFF', width=37, pady=20)
+    does_not_exist = Label(admin_page, text='404 This Page Does Not Exist', font=("Arial", 36), bg='#333333',fg='#FFFFFF', width=37, pady=20)
     does_not_exist.grid(row=0, columnspan=2)
     home_page.show()
     window.mainloop()
